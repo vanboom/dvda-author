@@ -432,7 +432,7 @@ inline static int get_pes_packet_audio(WaveData *info, WaveHeader *header, uint8
 
         fseeko(info->outfile.fp, 0, SEEK_END);
 
-        if (ftello(info->outfile.fp) != (off64_t) fpout_size)
+        if (ftello(info->outfile.fp) != (uint64_t) fpout_size)
         {
             foutput(ERR  "Audio decoding outfile mismatch. Decoded %" PRIu64 " bytes yet file size audio is %" PRIu64 " bytes.\n", fpout_size, ftello(info->outfile.fp));
         }

@@ -249,7 +249,6 @@ int create_atsi(command_t *command, char* audiotsdir,uint8_t titleset,uint8_t* a
     i=0x800;
     uint16_copy(&atsi[i],numtitles);
     // [200806] The number numtitles must be equal to number of audio zone titles plus video zone titles linked to. Gapless tracks are packed in the same title.
-    
     // Padding
     i+=8;
 
@@ -298,7 +297,6 @@ int create_atsi(command_t *command, char* audiotsdir,uint8_t titleset,uint8_t* a
 
         for (t=0;t<ntitletracks[j];t++)
         {
-
             // These seem to be pointers to a lookup table in the first sector of the ATSI
 
             x=get_afmt(&files[k],audioformats,&numafmts);
@@ -319,9 +317,10 @@ int create_atsi(command_t *command, char* audiotsdir,uint8_t titleset,uint8_t* a
             i+=4;
             uint32_copy(&atsi[i],files[k+t].PTS_length);
             i+=10;
-
         }
+
         /* Sector pointer records */
+
         for (t=0;t<ntitletracks[j];t++)
         {
             atsi[i]=0x01;

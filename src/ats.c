@@ -52,7 +52,7 @@ inline void pack_scr(uint8_t scr_bytes[6],uint64_t SCR_base, uint16_t SCR_ext)
     uint64_t msb, lsb;
 
     msb = (SCR_base>> 32) & 1;
-    lsb = SCR_base & (0xFFFFFFFF);
+    lsb = SCR_base ;
     temp = (MARKER_MPEG2_SCR << 6) | (msb << 5) | ((lsb >> 27) & 0x18) | 0x4 | ((lsb >> 28) & 0x3);
     scr_bytes[0]=temp;
     temp = (lsb & 0x0ff00000) >> 20;
@@ -66,6 +66,10 @@ inline void pack_scr(uint8_t scr_bytes[6],uint64_t SCR_base, uint16_t SCR_ext)
     temp = ((SCR_ext & 0x0000007F) << 1) | 1;
     scr_bytes[5]=temp;
 }
+
+//  ((scr_bytes[0] >> 3) & 0x3)       | ((scr_bytes[0] & 0x3) << 28) | (scr_bytes[1] << 20)  | (scr_bytes[2] >> 3) | ((scr_bytes[2] & 0x3) << 13)   | (scr_bytes[3] << 5) | (scr_bytes[4] >> 3)
+//Ox439E80 =
+
 
 inline static void decode_SCR(uint8_t* scr_bytes, uint64_t* SCRint_ptr)
 {
