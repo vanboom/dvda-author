@@ -16,7 +16,7 @@
 *aclocal.m4
 cdrtools*
 dvdau*
-dvda-author*
+/dvda-author*
 help2*
 CB_project*
 ImageMagick*
